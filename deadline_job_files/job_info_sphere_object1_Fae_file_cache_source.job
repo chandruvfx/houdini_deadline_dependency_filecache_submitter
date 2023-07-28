@@ -1,0 +1,12 @@
+BatchName=sim_test_1867_submission.hip
+Name=water_source_v001_bgeo.sc
+Comment=
+ChunkSize=10
+Frames=1-35every1
+Plugin=Houdini
+Pool=houdini
+OutputDirectory0=Y:/people/chandra.santharam/testcache/water_source_v001
+OutputFilename0=water_source_v001_####_.bgeo.sc
+EnvironmentKeyValue0=PYTHONPATH=Y:/pipeline/apps/houdini/19.5.534/deadline
+
+PostJobScript=Y:/pipeline/studio/temp/chandra.santharam/houdini/deadline_job_files/Fae_file_cache_source_exec_1867.py

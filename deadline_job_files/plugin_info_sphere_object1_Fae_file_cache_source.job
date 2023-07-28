@@ -1,0 +1,5 @@
+Output=Y:/people/chandra.santharam/testcache/water_source_v001/water_source_v001.$F4.bgeo.sc
+OutputDriver=/obj/sphere_object1/rop_geometry1
+SceneFile=Y:/pipeline/studio/temp/chandra.santharam/houdini/deadline_job_files/sim_test_1867_submission.hip
+Version=19.5
+CurrentNodeName=/obj/sphere_object1/Fae_file_cache_source

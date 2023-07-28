@@ -1,0 +1,5 @@
+Output=Y:/people/chandra.santharam/testcache/water_mesh_alembic_v001/water_mesh_alembic_v001.abc
+OutputDriver=/obj/particle_fluid/rop_alembic1
+SceneFile=Y:/pipeline/studio/temp/chandra.santharam/houdini/deadline_job_files/sim_test_1867_submission.hip
+Version=19.5
+CurrentNodeName=/obj/particle_fluid/Fae_file_cache_mesh_alembic

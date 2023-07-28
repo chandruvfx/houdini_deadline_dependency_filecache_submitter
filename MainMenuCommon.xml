@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+	<subMenu id="fae">
+		<label>FAE</label>
+			<insertBefore>help_menu</insertBefore>
+				<subMenu id="submit_dependency_deadline">
+					<label>Submit</label>
+					<scriptItem id="dependency_cache_submitter">
+					<label>Dependency File Cache Submitter</label>
+						<scriptCode><![CDATA[
+import imp
+from dependency_file_cache_submitter import dependency_cache_submitter as ds
+imp.reload(ds)
+]]>
+						</scriptCode>
+					</scriptItem>
+				</subMenu>
+	</subMenu>
+	<modifyItem id="help_menu"><insertAfter /></modifyItem>
+  </menuBar>
+</mainMenu> 

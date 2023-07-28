@@ -1,0 +1,13 @@
+BatchName=sim_test_1867_submission.hip
+Name=water_mesh_alembic_v001_abc
+Comment=
+ChunkSize=35
+Frames=1-35every1
+Plugin=Houdini
+Pool=houdini
+OutputDirectory0=Y:/people/chandra.santharam/testcache/water_mesh_alembic_v001
+OutputFilename0=water_mesh_alembic_v001.abc
+EnvironmentKeyValue0=PYTHONPATH=Y:/pipeline/apps/houdini/19.5.534/deadline
+
+PostJobScript=Y:/pipeline/studio/temp/chandra.santharam/houdini/deadline_job_files/Fae_file_cache_mesh_alembic_exec_1867.py
+JobDependencies=64b7b8de616d34d5542fd2a7
