@@ -13,7 +13,7 @@
 # the frames completes the caches. The 'Post Job Script' is a python file run from native
 # deadline python plugin, in-charge of executing another python file from the hython
 # standalone to open the hip file and swithch on the current custom file_cache 'load from disk'
-# save it bacj again
+# save the hip file again. 
 
 import hou
 import os 
