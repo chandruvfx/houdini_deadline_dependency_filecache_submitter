@@ -8,12 +8,14 @@
 # Submission Methodology:
 # -----------------------
 # A copy of hip file saved under users temp directory. The Submission script submit custom 
-# file cache nodes one-by-one from top-to-bottom from these file . Each job dispatched with 
+# file cache nodes one-by-one from top-to-bottom from these file . 
+# Each file_cache node submitted as single deadline job and Each job dispatched with 
 # the 'Post Job Script' to the dealine farm, which ideally run at the end of the job once all 
-# the frames completes the caches. The 'Post Job Script' is a python file run from native
-# deadline python plugin, in-charge of executing another python file from the hython
-# standalone to open the hip file and swithch on the current custom file_cache 'load from disk'
-# save the hip file again. 
+# the frames completes the caches. Second job depends First. Third job depends Second. etc..,,
+# The 'Post Job Script' is a python file run from native deadline python plugin,
+# In-charge of executing another python file from the hython standalone to open the hip file
+# switch the current custom file_cache 'load from disk' and save the hip file back again. 
+# With the new settings
 
 import hou
 import os 
