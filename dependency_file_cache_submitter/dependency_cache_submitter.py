@@ -336,9 +336,14 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
 
             self.file_cache_tree_view.selectionModel().clearSelection()
 
-        def generate_deadline_data(self):
+        def generate_deadline_data(self) -> None:
             """Retrive deadline job files and submit the deadline job 
 
+            Method retrive dealine plugin and job files of the respective file cache node.
+            Initiate two threads one for counter another for deadline job submission.
+            Once submission triggered two thread triggered. if submission to deadline 
+            took time then the second thread starts runs. Second thread runs the progressive bar.
+            both thread run parellely if one took time. 
             """
             farm_submit_items = self.get_all_submission_items()
             
