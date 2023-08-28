@@ -94,8 +94,20 @@ class progressBarWindow(QtWidgets.QDialog):
             self.show()
     
 
-
 class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
+        """Master Class execute the task of dependency submission
+
+        GUI tool loaded from the Qt ui read utility. Gui contain Two widgets  
+        one is collection list widget(left) another is user moved submission list widget(right).
+        Collections are list of items ideally custom file cache nodes inside geo nodes of the Obj.
+        It is loaded on the left side list widget. 
+        GUI Allows user actions like selecting, moving, linting, reloading and 
+        clearing both the list widgets. 
+        Submit pushbutton do several task. Once it pressed it trigger two thread. 
+        one is reposible for counting the waiting time while the deadline commandline tool perform
+        it task. It trigger the qt progress dialog which mapped the waiting time to the counter.
+        another one, create plugin and jobinfo job files, submit to dealine.
+        """
         
         def __init__(self) -> None:
                 
