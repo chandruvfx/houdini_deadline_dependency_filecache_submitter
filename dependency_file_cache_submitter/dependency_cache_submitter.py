@@ -337,7 +337,9 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             self.file_cache_tree_view.selectionModel().clearSelection()
 
         def generate_deadline_data(self):
-             
+            """Retrive deadline job files and submit the deadline job 
+
+            """
             farm_submit_items = self.get_all_submission_items()
             
             self.current_hip_path = hou.hipFile.path()
