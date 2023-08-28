@@ -63,7 +63,12 @@ class CollectGeoNodes:
 
 
 class progressBarWindow(QtWidgets.QDialog):
+    
+    """Standalone progress window
 
+    A progress window runs each time the 
+    submission happens. Run from seperate thread
+    """
     def __init__(self, parent=None) -> None:
                 
             super().__init__(parent)
