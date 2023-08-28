@@ -280,6 +280,7 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                                             )
                                 )
             
+            # Clear the list view.
             self.list_view_model.clear()
             if get_overlap_items:  
                 for get_overlap_item in get_overlap_items:
@@ -337,7 +338,6 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
 
         def generate_deadline_data(self):
              
-
             farm_submit_items = self.get_all_submission_items()
             
             self.current_hip_path = hou.hipFile.path()
