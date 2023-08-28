@@ -19,7 +19,13 @@
 # Example
 # -------
 #
-# Consider a file contain 
+# Consider a hip file contains custom file cache nodes for source, particle and meshing.
+# User submit in the order source -> particle -> meshing.  particle job depends on source job
+# mesh job dependes on particle job. Once source particles dumped out in the disk, 
+# the 'Post Job Script' open the current hip file, toggle on the 'load from disk' of source
+# file cache node and save it back. As so, when particles starting caching the simulation
+# network read the source particles from the disk
+
 
 import hou
 import os 
