@@ -1,3 +1,7 @@
+#
+# A GUI tool gather all the fae_file_cache nodes in the obj context
+# allow users to 
+
 import hou
 import os 
 import subprocess
