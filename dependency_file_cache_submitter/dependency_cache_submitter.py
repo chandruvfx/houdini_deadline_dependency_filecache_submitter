@@ -212,12 +212,17 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                         child_count = child_count + 1
 
 
-        def collect_geo_nodes_from_obj(self):
+        def collect_geo_nodes_from_obj(self) -> None:
             """ Manipulate tree view and list view with items
 
             Create standard item model for tree view. parents were
             geo node names. child names are the sop nodes of the geo nodes.
-            If items are moved from """
+            
+            Consider, If user leave some nodes and do a fresh selection of geo nodes
+            then the tree view cleared out and loaded with new items
+            Old items in the List view which not exsist in the fresh selection is also 
+            cleared. Other remainig items order and color preserved
+             """
             
             
             items = self.get_all_submission_items()
@@ -283,8 +288,11 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                     self.list_view_model.appendRow(moved_file_cache_node_name)
 
 
-        def get_all_submission_items(self):
-
+        def get_all_submission_items(self) -> list:
+            
+            """Returns the items exist in the 
+            list view"""
+            
             items = []
             model = self.file_cache_list_view.model()
             for row in range(model.rowCount()):
@@ -294,7 +302,7 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             return items
 
 
-        def move_selected(self):
+        def move_selected(self) -> None:
             
             """Move the selected item between views
 
