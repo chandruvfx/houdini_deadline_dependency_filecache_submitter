@@ -176,13 +176,20 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             self.collect_geo_nodes_from_obj()
             
 
-        def reload_obj_context_geos(self):
+        def reload_obj_context_geos(self) -> None:
+
+            """Flush the tree view. Re-append all the items based on 
+            the new selection by the user
+            """
             
             self.collect_geo_nodes_from_obj()
 
+        def clear_all_list_view(self) -> None:
 
-
-        def clear_all_list_view(self):
+            """Wipe out the items in the list view
+            make the left side collected treeview items to 
+            linted white
+            """
             
             self.list_view_model.clear()
 
@@ -206,7 +213,13 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
 
 
         def collect_geo_nodes_from_obj(self):
+            """ Manipulate tree view and list view with items
 
+            Create standard item model for tree view. parents were
+            geo node names. child names are the sop nodes of the geo nodes.
+            If items are moved from """
+            
+            
             items = self.get_all_submission_items()
             moved_items = []
             self.tree_view_model.clear()
@@ -282,6 +295,16 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
 
 
         def move_selected(self):
+            
+            """Move the selected item between views
+
+            Move the selected tree item to list view. 
+            Once migrated the migrated item in the tree view
+            linted with red and clear the selection. 
+            The item name in the list concatinated with 
+            the parent name ie geo node name and child name 
+            ie sop file cache node name
+            """
             
             items = self.get_all_submission_items()
             
