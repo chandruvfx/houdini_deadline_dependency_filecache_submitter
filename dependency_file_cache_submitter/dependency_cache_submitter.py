@@ -1,6 +1,17 @@
 #
 # A GUI tool gather all the fae_file_cache nodes in the obj context
-# allow users to 
+# allow users to multi select the items from the collections list widget and 
+# move the selected items to the sumbission list widget. 
+# The Submission list preserves the order based upon the selection carried out by the user.
+# The Dependency submission achieved one job dependent on another. A chain order !!. 
+#
+# Submission Methodology:
+# -----------------------
+# A copy of hip file saved under users temp directory. The Submission script submit custom 
+# file cache nodes one-by-one from top-to-bottom from these file . Each job dispatched with 
+# the 'Post Job Script' to the dealine farm, which ideally run at the end of the job once all 
+# the frames completes the caches. 
+# 
 
 import hou
 import os 
