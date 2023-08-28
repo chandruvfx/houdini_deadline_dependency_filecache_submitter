@@ -1,9 +1,9 @@
 #
-# A GUI tool gather all the fae_file_cache nodes in the obj context
-# allow users to multi select the items from the collections list widget and 
-# move the selected items to the sumbission list widget. 
+# A GUI tool gather all the fae_file_cache nodes from the obj context
+# allow users to multi select the items from the collection list widget(left side) and 
+# move the selected items to the sumbission list widget(right side). 
 # The Submission list preserves the order based upon the selection carried out by the user.
-# The Dependency submission achieved one job dependent on another. A chain order !!. 
+# The Dependency submission achieved one job dependent on another. A chained order !!. 
 #
 # Submission Methodology:
 # -----------------------
@@ -11,7 +11,7 @@
 # file cache nodes one-by-one from top-to-bottom from these file to the deadline farm. 
 # Each file_cache node submitted as a single deadline job and Each job dispatched with 
 # the 'Post Job Script' to the dealine farm, which ideally run at the end of the job once all 
-# the frames completes the caches. Second job depends First. Third job depends Second. etc..,,
+# the frames completes. Second job depends First. Third job depends Second. etc..,,
 # The 'Post Job Script' is a python file runs at last from the native deadline python plugin,
 # In-charge of executing another python file from the hython standalone to open the hip file
 # switch the current custom file_cache 'load from disk' and save the hip file back again. 
@@ -24,7 +24,7 @@
 # mesh job dependes on particle job. Once source particles dumped out in the disk, 
 # the 'Post Job Script' open the current hip file, toggle on the 'load from disk' of source
 # file cache node and save it back. As so, when particles starting caching the simulation
-# network read the source particles from the disk
+# network read the source particles from the disk. Similarly works for other jobs too
 
 
 import hou
