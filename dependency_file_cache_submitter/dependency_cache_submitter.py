@@ -41,8 +41,16 @@ from PySide2.QtUiTools import QUiLoader
 
 
 class CollectGeoNodes:
+    
+    """Returns Gathered custom fae_file_Cache nodes""" 
+    
+    def get_seleted_nodes(self) -> hou.Node:
 
-    def get_seleted_nodes(self):
+        """Dive inside into user selected geo nodes 
+        collects all the custom file cache nodes and
+        return it
+        """
+        
         nodes= hou.selectedNodes()
         filecache_tree_items = {}
 
