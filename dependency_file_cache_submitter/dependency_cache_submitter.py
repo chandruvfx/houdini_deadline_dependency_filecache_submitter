@@ -1,7 +1,7 @@
 #
 # A GUI tool gather all the fae_file_cache nodes from the obj context
-# allow users to multi select the items from the collection list widget(left side) and 
-# move the selected items to the sumbission list widget(right side). 
+# allow users to multi select the items from the collection tree view widget(left side) and 
+# move the selected items to the sumbission list list view widget(right side). 
 # The Submission list preserves the order based upon the selection carried out by the user.
 # The Dependency submission achieved one job dependent on another. A chained order !!. 
 #
@@ -98,7 +98,7 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
         """Master Class execute the task of dependency submission
 
         GUI tool loaded from the Qt ui read utility. Gui contain Two widgets  
-        one is collection list widget(left) another is user moved submission list widget(right).
+        one is collection treeview widget(left) another is user moved submission listview widget(right).
         Collections are list of items ideally custom file cache nodes inside geo nodes of the Obj.
         It is loaded on the left side list widget. 
         GUI Allows user actions like selecting, moving, linting, reloading and 
@@ -110,7 +110,13 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
         """
         
         def __init__(self) -> None:
-                
+
+            """Initialize the qt GUI
+
+            Read the UI file and widgets. 
+            Trigger necessary user actions to a performable task
+            """
+            
             super().__init__()
 
             self.count = 0
@@ -124,18 +130,22 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             if not os.path.exists(self.dl_root_submission_file_path): 
                 os.makedirs(self.dl_root_submission_file_path)
 
+            # Deadline Command line exe
             self.dl_path = r"C:/Program Files/Thinkbox/Deadline10/bin"
             self.dl_path = self.dl_path.replace(r"/", "//") + "//deadlinecommand.exe"
             self.dl_path = '"%s"' %self.dl_path
 
+            # Load Ui File via the qt loader to read the children widgets
             dirname = os.path.dirname(__file__)
             filename = os.path.join(dirname, 'dependency_submitter_gui.ui')
             loader = QUiLoader()
             self.window = loader.load(filename, None)
 
+            # Arrow button to move items from left to right
             self.move_widget = self.window.findChild(QtWidgets.QPushButton, 'move')
             self.move_widget.clicked.connect(self.move_selected)
 
+            # Left lit tree view 
             self.file_cache_tree_view = self.window.findChild(QtWidgets.QTreeView, 'treeView')
             self.file_cache_tree_view.setSelectionMode(self.file_cache_tree_view.ExtendedSelection)
             self.tree_view_model = QStandardItemModel()
@@ -143,14 +153,18 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             self.file_cache_tree_view.setModel(self.tree_view_model)
             self.file_cache_tree_view.expandAll()
 
+            # Right List view
             self.file_cache_list_view = self.window.findChild(QtWidgets.QListView, 'listView')
             self.list_view_model = QStandardItemModel()
             self.file_cache_list_view.setModel(self.list_view_model)
 
+            # Trigger submission task to deadline 
             self.submit_deadline_button = self.window.findChild(QtWidgets.QPushButton, 'submit_deadline')
             self.submit_deadline_button.setStyleSheet("font: 10pt 'Nirmala UI'")
             self.submit_deadline_button.clicked.connect(self.generate_deadline_data)
 
+            # Flush out the tree view and load back again with new set of selection
+            # made by the user on the obj context
             self.reload_hou_geo_into_treeview = \
                 self.window.findChild(QtWidgets.QPushButton, 'reload')
             self.reload_hou_geo_into_treeview.clicked.connect(self.reload_obj_context_geos)
