@@ -337,14 +337,19 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             self.file_cache_tree_view.selectionModel().clearSelection()
 
         def generate_deadline_data(self) -> None:
-            """Retrive deadline job files and submit the deadline job 
+            """Attain deadline job files path and submit the deadline job 
+            
+            Method atain dealine plugin and job files of the respective file cache node.
+            Initiate two threads parellely. one for counter another for deadline job submission.
+            If the commandline line job submission thread took a while from one thread then the other 
+            thread initiate the progress bar and run counter. A recursive deadline commandline line submission
+            carried out based upon the number of job submissions. 
 
-            Method retrive dealine plugin and job files of the respective file cache node.
-            Initiate two threads one for counter another for deadline job submission.
-            Once submission triggered two thread triggered. if submission to deadline 
-            took time then the second thread starts runs. Second thread runs the progressive bar.
-            both thread run parellely if one took time. 
+            A first submission dont have dependencies. the job id of the first job passed as 
+            argument to the same function as so while the second job have dependent job id of the 
+            first job. vice versa. 
             """
+            
             farm_submit_items = self.get_all_submission_items()
             
             self.current_hip_path = hou.hipFile.path()
@@ -355,6 +360,7 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                                                         )
             hou.hipFile.save(sim_hip_file_path)
 
+            # Pull the job files path from the HDA it is currently submitting with
             deadline_job_files = []
             for sop_nodes in farm_submit_items:
                 sop_node = hou.node("/obj/" + sop_nodes)
@@ -362,12 +368,21 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                             sop_node.hdaModule().SubmitToDeadline(sop_node)
                 )
 
+            # declare the progress bar 
             self.submit_progress = progressBarWindow(self)
+
+            # Execute deadline submission method from a thread 
+            # with deadline job files. Which ideadlly a plugin.job and 
+            # jobfile.job files 
             self.thread_job_submit = threading.Thread(target=self.dependency_submit_to_deadline,
                                     args = (deadline_job_files,) ,
                                     kwargs={ 'dep_job_id':''}
                                 )
+            # A second thread which initiate the progress bar and run the counter 
+            # during the deadline command line utilies are busy with executing his own task
             self.thread_counter_number = threading.Thread(target=self.calculate_counter)
+
+            # Both thread Started
             self.thread_job_submit.start()
             self.thread_counter_number.start()
 
