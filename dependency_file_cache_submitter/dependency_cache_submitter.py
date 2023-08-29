@@ -387,8 +387,14 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             self.thread_counter_number.start()
 
 
-        def calculate_counter(self):
+        def calculate_counter(self) -> None:
 
+            """Counter for progress bar 
+
+            Set the vincrementing value for the progress bar
+            If jobid not is dumped by deadline commandline utility
+            then this runs until it over"""
+            
             self.process_counter = 0
             while self.process_counter< 360:
                 time.sleep(0.1)
@@ -399,6 +405,10 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                 if not self.deadline_cmd_Status:
                     self.process_counter = self.process_counter+1
                 else: 
+                    # close the progress bar window and 
+                    # joing into the main thread once all 
+                    # submission completed
+                    
                     self.submit_progress.close()
                     self.thread_job_submit.join()
                     break
@@ -409,6 +419,25 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                                             deadline_job_files, 
                                             dep_job_id = ''
                                         ):
+            """A recursive deadline commandline method
+
+            Method take the first job id as input for the second deadline job
+            and write 'JobDependencies' field at the end of the second job.
+            Similartly for third job. continues upto the final one reached.
+
+            A counter is initiated to determine which first job. the progressive bar
+            were reseted to zero each time when an deadline job is submitted. 
+            The progress bar counter increments visually run from zero to hundred
+            for each job initialization. 
+
+            Args:
+                deadline_job_files (list) : One depth nested list contain all the 
+                                            respective jobfile.job and plugin.job files 
+                                            of custom file cache nodes
+                dep_job_id (str): Job-id of the submitted job ingested again to 
+                                  the same method, which registers the job-id 
+                                  as a dependent job id for the next job 
+            """
             
             if not deadline_job_files:
                 QtWidgets.QMessageBox.question(self, 
