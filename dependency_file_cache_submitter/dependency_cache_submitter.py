@@ -530,7 +530,12 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
                                   plugin_info_job_file
                                 ):
             
-            
+            """Post Job script execute hython script from hython standalone
+
+            Each custom file cache node submitted with the post job script
+            file responsible to open the  hip file, toggle on the load from 
+            disk, save it back
+            """"
             with open(plugin_info_job_file, 'r') as pjf:
                 file_data = pjf.readlines() 
 
