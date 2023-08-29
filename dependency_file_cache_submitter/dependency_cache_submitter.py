@@ -430,6 +430,9 @@ class DependencyFileCacheSubmitter(QtWidgets.QMainWindow):
             The progress bar counter increments visually run from zero to hundred
             for each job initialization. 
 
+            Each job files passed to a post job script writing method which 
+            append 'PostJobScriptName' at last in the job_file.job
+
             Args:
                 deadline_job_files (list) : One depth nested list contain all the 
                                             respective jobfile.job and plugin.job files 
