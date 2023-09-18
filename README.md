@@ -12,8 +12,8 @@ The submission Chained order describes, the first item submitted into the deadli
 Let consider a hip file have three FA file cache nodes for a flip sim. Fa_filecache_particles, Fa_filecache_source, Fa_filecache_meshing. Using dependency file cache system, an artist selected source, particle and meshing items in the order and moved to submission list. Now the submission chain is occur like below hierarchy
 
 Fa_filecache_source \
-&nbsp;|--Fa_filecache_particles \
-&nbsp;&nbsp;|--Fa_filecache_meshing 
+&emsp;|--Fa_filecache_particles \
+&emsp;&emsp;|--Fa_filecache_meshing 
 
 Important Note:Particle Simulation: 
 Make sure caching particle simulation always happen in a single farm machine, To do so, assign "Frame Per Task" field in the deadline submission tab of the FA file cache HDA node to a subtracted value of end frame to the start frame. 
