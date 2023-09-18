@@ -12,11 +12,7 @@ The submission Chained order describes, the first item submitted into the deadli
 Let consider a hip file have three FA file cache nodes for a flip sim. Fa_filecache_particles, Fa_filecache_source, Fa_filecache_meshing. Using dependency file cache system, an artist selected source, particle and meshing items in the order and moved to submission list. Now the submission chain is occur like below hierarchy
 
 Fa_filecache_source
-     ^
-     |  (depends)
      |--Fa_filecache_particles
-          ^
-          |  (depends)
           |--Fa_filecache_meshing
 
 Example
