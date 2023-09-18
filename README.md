@@ -13,10 +13,10 @@ Let consider a hip file have three FA file cache nodes for a flip sim. Fa_fileca
 
 Fa_filecache_source \
 &emsp;&emsp;^ \
-&emsp;&emsp;|    (depends) \
+&emsp;&emsp;|&emsp;(depends) \
 &emsp;&emsp;|--Fa_filecache_particles \
 &emsp;&emsp;&emsp;&emsp;^ \
-&emsp;&emsp;&emsp;&emsp;|    (depends) \
+&emsp;&emsp;&emsp;&emsp;|&emsp;(depends) \
 &emsp;&emsp;&emsp;&emsp;|--Fa_filecache_meshing 
 
 Important Note:Particle Simulation: 
