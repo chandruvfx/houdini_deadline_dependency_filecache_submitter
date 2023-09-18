@@ -13,7 +13,7 @@ Let consider a hip file have three FA file cache nodes for a flip sim. Fa_fileca
 
 Fa_filecache_source \
      |--Fa_filecache_particles \
-          |--Fa_filecache_meshing \
+          |--Fa_filecache_meshing 
 
 Important Note:Particle Simulation: 
 Make sure caching particle simulation always happen in a single farm machine, To do so, assign "Frame Per Task" field in the deadline submission tab of the FA file cache HDA node to a subtracted value of end frame to the start frame. 
